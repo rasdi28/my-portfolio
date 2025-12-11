@@ -1,6 +1,6 @@
 // src/components/LandingPage.tsx
 "use client";
-
+import { useEffect, useState } from "react";
 import { motion, Variants } from "framer-motion";
 import Button from "./ui/button";
 import ThemeToggle from "./ThemeToggle";
@@ -20,27 +20,44 @@ const item: Variants = {
   show: { opacity: 1, y: 0, transition: { duration: 0.45, ease: "easeOut" } },
 };
 
+
 export default function LandingPage() {
+
+    const [scrolled, setScrolled] = useState(false);
+
+    useEffect(() => {
+      const handler = () => setScrolled(window.scrollY > 20);
+      window.addEventListener("scroll", handler);
+      return () => window.removeEventListener("scroll", handler);
+    }, []);
+
+    
   return (
     <div className="min-h-screen bg-white text-slate-900 antialiased">
       {/* NAV */}
-      <header className="w-full fixed top-0 left-0 z-50 bg-white/90 backdrop-blur-sm border-b">
-        <div className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
-          <div className="text-lg font-semibold">Rasdi.dev</div>
-          <div className="flex items-center gap-4">
-            <nav className="hidden md:flex gap-6 text-sm text-slate-700">
-              <a href="#work" className="hover:text-slate-900">Projects</a>
-              <a href="#about" className="hover:text-slate-900">About</a>
-              <a href="#contact" className="hover:text-slate-900">Contact</a>
-            </nav>
-            <ThemeToggle />
-          </div>
-        </div>
-      </header>
+      <motion.header
+      animate={{
+        backgroundColor: scrolled ? "rgba(255,255,255,0.9)" : "rgba(255,255,255,0)",
+        boxShadow: scrolled ? "0 2px 20px rgba(0,0,0,0.1)" : "0 0 0 rgba(0,0,0,0)",
+      }}
+      className="w-full fixed top-0 z-50 backdrop-blur-xl transition-all"
+    >
+      <nav className="max-w-6xl mx-auto flex items-center justify-between px-6 py-4">
+        <span className="text-xl font-semibold text-black">Rasdi.dev</span>
+
+        <ul className="flex gap-8 text-sm text-black/80">
+          <li><a href="#about">About</a></li>
+          <li><a href="#skills">Skills</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </motion.header>
+
 
       <main className="pt-28">
         {/* HERO */}
-        <section className="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-10 items-center py-20">
+        <section className="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-10 items-center py-20 bg-white">
           {/* Left: text */}
           <motion.div
             initial="hidden"
@@ -64,7 +81,7 @@ export default function LandingPage() {
             </motion.div>
 
             <motion.div variants={item} className="flex items-center gap-4 text-sm text-slate-600">
-              <div>Based in Bandung, Indonesia</div>
+              <div>Based in Jakarta, Indonesia</div>
               <div>·</div>
               <div>Open to freelance & full-time</div>
             </motion.div>
@@ -105,7 +122,7 @@ export default function LandingPage() {
         </section>
 
         {/* PROJECTS (scroll reveal staggered) */}
-        <section id="work" className="py-16 border-t">
+        <section id="work" className="py-20 bg-slate-50">
           <div className="max-w-6xl mx-auto px-6">
             <h2 className="text-2xl font-semibold mb-6">Selected Projects</h2>
             <div className="grid md:grid-cols-3 gap-6">
@@ -131,7 +148,7 @@ export default function LandingPage() {
         </section>
 
         {/* SKILLS */}
-        <section id="about" className="py-16">
+        <section id="about" className="py-20 bg-white">
           <div className="max-w-6xl mx-auto px-6">
             <h2 className="text-2xl font-semibold mb-6">Skills</h2>
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
@@ -152,7 +169,7 @@ export default function LandingPage() {
         </section>
 
         {/* CONTACT */}
-        <section id="contact" className="py-16 border-t">
+        <section id="contact" className="py-20 bg-slate-100">
           <div className="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-8">
             <div>
               <h2 className="text-2xl font-semibold mb-3">Get in touch</h2>
@@ -161,7 +178,7 @@ export default function LandingPage() {
             </div>
 
             <aside className="text-sm text-slate-600">
-              <div className="mb-4"><strong>Location</strong><div>Bandung, Indonesia</div></div>
+              <div className="mb-4"><strong>Location</strong><div>Jakarta, Indonesia</div></div>
               <div className="mb-4"><strong>Email</strong><div>hello@rasdi.dev</div></div>
               <div><strong>Availability</strong><div>Remote / Hybrid</div></div>
             </aside>
@@ -169,7 +186,7 @@ export default function LandingPage() {
         </section>
       </main>
 
-      <footer className="py-8 text-center text-sm text-slate-600 border-t">
+      <footer className="py-8 text-center text-sm text-slate-600 bg-white">
         © {new Date().getFullYear()} Rasdi — All rights reserved.
       </footer>
     </div>
