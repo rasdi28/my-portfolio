@@ -57,7 +57,7 @@ export default function LandingPage() {
 
       <main className="pt-28">
         {/* HERO */}
-        <section className="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-10 items-center py-20 bg-white">
+        <section id="about" className="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-10 items-center py-20 bg-white">
           {/* Left: text */}
           <motion.div
             initial="hidden"
@@ -122,7 +122,7 @@ export default function LandingPage() {
         </section>
 
         {/* PROJECTS (scroll reveal staggered) */}
-        <section id="work" className="py-20 bg-slate-50">
+        <section id="projects" className="py-20 bg-slate-50">
           <div className="max-w-6xl mx-auto px-6">
             <h2 className="text-2xl font-semibold mb-6">Selected Projects</h2>
             <div className="grid md:grid-cols-3 gap-6">
@@ -148,7 +148,7 @@ export default function LandingPage() {
         </section>
 
         {/* SKILLS */}
-        <section id="about" className="py-20 bg-white">
+        <section id="skills" className="py-20 bg-white">
           <div className="max-w-6xl mx-auto px-6">
             <h2 className="text-2xl font-semibold mb-6">Skills</h2>
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
