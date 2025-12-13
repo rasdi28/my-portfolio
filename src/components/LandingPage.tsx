@@ -6,6 +6,7 @@ import Button from "./ui/button";
 import ThemeToggle from "./ThemeToggle";
 import ContactForm from "./ContactForm";
 import {projects} from "../data/projects"
+import Link from "next/link";
 
 const container: Variants = {
   hidden: {},
@@ -35,26 +36,7 @@ export default function LandingPage() {
     
   return (
     <div className="min-h-screen bg-white text-slate-900 antialiased">
-      {/* NAV */}
-      <motion.header
-      animate={{
-        backgroundColor: scrolled ? "rgba(255,255,255,0.9)" : "rgba(255,255,255,0)",
-        boxShadow: scrolled ? "0 2px 20px rgba(0,0,0,0.1)" : "0 0 0 rgba(0,0,0,0)",
-      }}
-      className="w-full fixed top-0 z-50 backdrop-blur-xl transition-all"
-    >
-      <nav className="max-w-6xl mx-auto flex items-center justify-between px-6 py-4">
-        <span className="text-xl font-semibold text-black">Rasdi.dev</span>
-
-        <ul className="flex gap-8 text-sm text-black/80">
-          <li><a href="#about">About</a></li>
-          <li><a href="#projects">Projects</a></li>
-          <li><a href="#skills">Skills</a></li>
-          <li><a href="#contact">Contact</a></li>
-        </ul>
-      </nav>
-    </motion.header>
-
+      
 
       <main className="pt-28">
         {/* HERO */}
@@ -164,44 +146,45 @@ export default function LandingPage() {
 
 
         {/* PROJECTS (scroll reveal staggered) */}
-          <section id="projects" className="py-20 bg-slate-50">
-            <div className="max-w-6xl mx-auto px-6">
-              <h2 className="text-2xl font-semibold mb-6">Projects</h2>
+        <section id="projects" className="py-20 bg-slate-50">
+  <div className="max-w-6xl mx-auto px-6">
+    <h2 className="text-2xl font-semibold mb-6">Projects</h2>
 
-              <div className="grid md:grid-cols-3 gap-6">
-                {projects.map((p, i) => (
-                  <motion.article
-                    key={p.title}
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: i * 0.1, duration: 0.5 }}
-                    whileHover={{ scale: 1.04, y: -4 }}
-                    className="
-                      bg-white/70 backdrop-blur-md 
-                      border border-slate-200 
-                      rounded-2xl p-6 
-                      shadow-[0_3px_10px_rgb(0,0,0,0.05)] 
-                      hover:shadow-lg 
-                      hover:bg-white 
-                      transition-all duration-300
-                    "
-                  >
-                    <h3 className="font-semibold text-lg text-slate-800">
-                      {p.title}
-                    </h3>
+    <div className="grid md:grid-cols-3 gap-6">
+      {projects.map((p, i) => (
+        <Link key={p.slug} href={`/projects/${p.slug}`}>
+          <motion.article
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: i * 0.1, duration: 0.5 }}
+            whileHover={{ scale: 1.04, y: -4 }}
+            className="
+              bg-white/70 backdrop-blur-md 
+              border border-slate-200 
+              rounded-2xl p-6 
+              shadow-[0_3px_10px_rgb(0,0,0,0.05)] 
+              hover:shadow-lg 
+              hover:bg-white 
+              transition-all duration-300
+              cursor-pointer
+            "
+          >
+            <h3 className="font-semibold text-lg text-slate-800">
+              {p.title}
+            </h3>
 
-                    <p className="text-sm text-slate-600 mt-2 leading-relaxed">
-                      {p.desc}
-                    </p>
+            <p className="text-sm text-slate-600 mt-2 leading-relaxed">
+              {p.desc}
+            </p>
 
-                    {/* Accent bar */}
-                    <div className="mt-4 h-1 w-12 bg-gradient-to-r from-blue-500 to-indigo-500 rounded-full"></div>
-                  </motion.article>
-                ))}
-              </div>
-            </div>
-          </section>
+            <div className="mt-4 h-1 w-12 bg-gradient-to-r from-blue-500 to-indigo-500 rounded-full" />
+          </motion.article>
+        </Link>
+      ))}
+    </div>
+  </div>
+</section>
 
         {/* SKILLS */}
             <section id="skills" className="py-24 bg-gradient-to-b from-white via-slate-50/40 to-white">

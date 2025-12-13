@@ -1,17 +1,12 @@
-// app/layout.tsx
 import "./globals.css";
-import type { ReactNode } from "react";
+import Navbar from "@/src/components/Navbar";
 
-export const metadata = {
-  title: "Rasdi — Portfolio",
-  description: "Portfolio — Rasdi",
-};
-
-export default function RootLayout({ children }: { children: ReactNode }) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
-      <body className="antialiased">
-        {children}
+      <body className="bg-white">
+        <Navbar />
+        <main className="pt-1">{children}</main>
       </body>
     </html>
   );
