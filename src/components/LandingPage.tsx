@@ -42,7 +42,7 @@ export default function LandingPage() {
         {/* HERO */}
         <section
   id="about"
-  className="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-14 items-center py-24 
+  className="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-14 items-center py-10 
              bg-gradient-to-b from-white via-slate-50 to-white"
 >
   {/* Left: text */}
@@ -92,56 +92,90 @@ export default function LandingPage() {
   </motion.div>
 
   {/* Right: profile card */}
-  <motion.div
-    initial={{ opacity: 0, scale: 0.98 }}
-    whileInView={{ opacity: 1, scale: 1 }}
-    viewport={{ once: true }}
-    transition={{ duration: 0.7 }}
-    className="flex justify-center md:justify-end"
+<motion.div
+  initial={{ opacity: 0, scale: 0.98 }}
+  whileInView={{ opacity: 1, scale: 1 }}
+  viewport={{ once: true }}
+  transition={{ duration: 0.7 }}
+  className="flex justify-center md:justify-end"
+>
+  <div
+    className="
+      w-full max-w-sm rounded-3xl p-8
+      bg-white/70 backdrop-blur-xl
+      shadow-lg ring-1 ring-slate-200/50
+      hover:shadow-2xl transition-all duration-500
+    "
   >
-    <div
-      className="w-full max-w-sm rounded-3xl p-8 
-                 bg-white/70 backdrop-blur-xl 
-                 shadow-lg ring-1 ring-slate-200/50
-                 hover:shadow-2xl transition-all duration-500"
-    >
-      <div className="flex flex-col items-center">
-              <div
-          className="w-56 h-56 rounded-full overflow-hidden 
-                    shadow-lg ring-4 ring-white/70 transition-all duration-500"
-        >
-          <img
-            src="/profile.jpeg"
-            alt="Rasdi profile"
-            className="object-cover w-full h-full"
-          />
-        </div>
+    <div className="flex flex-col items-center">
+      {/* Avatar */}
+      <div
+        className="
+          w-56 h-56 rounded-full overflow-hidden
+          shadow-lg ring-4 ring-white/70
+          transition-all duration-500
+        "
+      >
+        <img
+          src="/profile.jpeg"
+          alt="Rasdi profile"
+          className="object-cover w-full h-full"
+        />
+      </div>
 
-        <div className="mt-5 text-center">
-          <h3 className="font-bold text-xl tracking-tight">Rasdi Abdulrohman</h3>
-          <p className="text-slate-500 text-sm mt-1">
-            Frontend & Backend Developer
-          </p>
-        </div>
+      {/* Name */}
+      <div className="mt-5 text-center">
+        <h3 className="font-bold text-xl tracking-tight">
+          Rasdi Abdulrohman
+        </h3>
+        <p className="text-slate-500 text-sm mt-1">
+          Frontend & Backend Developer
+        </p>
+      </div>
 
-        <div className="mt-6 w-full text-center">
-          <p className="text-sm text-slate-600">Tech highlights</p>
-          <div className="flex flex-wrap justify-center gap-2 mt-3">
-            {["Next.js", "TypeScript", "Tailwind", "Java"].map((t) => (
-              <span
-                key={t}
-                className="text-xs px-3 py-1 rounded-full
-                           bg-gradient-to-br from-slate-100 to-white
-                           ring-1 ring-slate-200 shadow-sm"
-              >
-                {t}
-              </span>
-            ))}
-          </div>
+      {/* Tech highlights */}
+      <div className="mt-6 w-full text-center">
+        <p className="text-sm text-slate-600">Tech highlights</p>
+        <div className="flex flex-wrap justify-center gap-2 mt-3">
+          {["Next.js", "TypeScript", "Tailwind", "Java"].map((t) => (
+            <span
+              key={t}
+              className="
+                text-xs px-3 py-1 rounded-full
+                bg-gradient-to-br from-slate-100 to-white
+                ring-1 ring-slate-200 shadow-sm
+              "
+            >
+              {t}
+            </span>
+          ))}
         </div>
       </div>
+
+      {/* Download CV */}
+      <div className="mt-8 w-full">
+        <a
+          href="/cv/Curriculum-Vitae-Rasdi-Abdulrohman.pdf"
+          download
+          className="
+            block w-full text-center
+            rounded-2xl px-6 py-3
+            text-sm font-semibold
+            bg-gradient-to-r from-indigo-600 to-blue-600
+            text-white
+            shadow-lg
+            hover:shadow-xl hover:scale-[1.03]
+            active:scale-[0.97]
+            transition-all duration-300
+          "
+        >
+          Download CV
+        </a>
+      </div>
     </div>
-  </motion.div>
+  </div>
+</motion.div>
+
 </section>
 
 
